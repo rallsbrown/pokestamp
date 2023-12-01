@@ -32,6 +32,7 @@ const TestList = () => {
     <div>
       <h2>t e s t l i s t.</h2>
       <button onClick={handleGetList}>get list</button>
+      <p>{JSON.stringify(results)}</p>
     </div>
   );
 };
