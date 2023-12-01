@@ -25,12 +25,13 @@ const TestList = () => {
     console.log("getList");
     const list = results;
     getList();
+    console.log("the list", list);
   };
 
   return (
     <div>
       <h2>t e s t l i s t.</h2>
-      <button onClick={getList}>get list</button>
+      <button onClick={handleGetList}>get list</button>
     </div>
   );
 };

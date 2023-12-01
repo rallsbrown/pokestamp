@@ -6,11 +6,16 @@ require("dotenv").config();
 
 const app = express();
 
+const corsOptions = {
+  origin: "http://localhost:5175",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
 app.get("/", (req, res) => {
   res.json("hi");
 });
 
-app.get("/pokemon", cors(), (req, res) => {
+app.get("/pokemon", cors(corsOptions), (req, res) => {
   const options = {
     method: "GET",
     url: `${process.env.POKEAPI_KEY}pokemon?limit=151`,
