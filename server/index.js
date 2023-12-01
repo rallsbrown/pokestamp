@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
   res.json("hi");
 });
 
-app.get("/pokemon", (req, res) => {
+app.get("/pokemon", cors(), (req, res) => {
   const options = {
     method: "GET",
     url: `${process.env.POKEAPI_KEY}pokemon?limit=151`,
