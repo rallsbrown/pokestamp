@@ -7,9 +7,16 @@ import PokeCard from "../PokeCard/PokeCard";
 const PokeList = () => {
   //do i want a global isloading state, or per component?
   // eslint-disable-next-line no-unused-vars
-  const { pokeList, setPokeList, loading, randomPoke, setRandomPoke } =
-    usePokeContext();
-
+  const {
+    pokeList,
+    setPokeList,
+    loading,
+    randomPoke,
+    setRandomPoke,
+    pokeData,
+  } = usePokeContext();
+  console.log("pokeList - randomPoke", randomPoke);
+  console.log("pokeList - pokeData", pokeData);
   const handleRandomPokemon = () => {
     if (pokeList.length) {
       const randIdx = Math.floor(Math.random() * pokeList.length);

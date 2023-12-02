@@ -8,7 +8,7 @@ const Provider = ({ children }) => {
   const [pokeList, setPokeList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [randomPoke, setRandomPoke] = useState([]);
-  const [PokeData, setPokeData] = useState(null);
+  const [pokeData, setPokeData] = useState([]);
 
   //got stuck on this
   //Uncaught Error: Objects are not valid as a React child (found: object with keys {name, url})
@@ -26,28 +26,28 @@ const Provider = ({ children }) => {
     }
   };
 
-  const getPokeData = async () => {
+  const getPokeData = React.useCallback(async () => {
     setLoading(true);
     if (randomPoke.length) {
       try {
         const { data } = await axios.get(randomPoke[0].url);
-        setPokeData(data);
+        setPokeData([data]);
         setLoading(false);
       } catch (e) {
         console.log(e);
         setLoading(false);
       }
     }
-  };
+  }, [randomPoke]);
 
   React.useEffect(() => {
     getPokeData();
-  }, [randomPoke]);
+  }, [getPokeData, randomPoke]);
 
   // this was just to make sure context state was in sync with click handler
   React.useEffect(() => {
-    console.log("pokeData", PokeData);
-  }, [PokeData]);
+    console.log("pokeData", pokeData);
+  }, [pokeData]);
   // this was just to make sure context state was in sync with click handler
   React.useEffect(() => {
     console.log("context", randomPoke);
@@ -63,7 +63,7 @@ const Provider = ({ children }) => {
     loading,
     randomPoke,
     setRandomPoke,
-    PokeData,
+    pokeData,
   };
 
   return (
