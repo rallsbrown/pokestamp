@@ -12,7 +12,7 @@ const Provider = ({ children }) => {
   //got stuck on this
   //Uncaught Error: Objects are not valid as a React child (found: object with keys {name, url})
   //can't render an object to the DOM
-  const getPoke = async () => {
+  const getPokeList = async () => {
     setLoading(true);
     try {
       const { data } = await axios.get("http://localhost:8000/pokemon");
@@ -31,7 +31,7 @@ const Provider = ({ children }) => {
   }, [randomPoke]);
 
   React.useEffect(() => {
-    getPoke();
+    getPokeList();
   }, []);
 
   const contextValue = {
