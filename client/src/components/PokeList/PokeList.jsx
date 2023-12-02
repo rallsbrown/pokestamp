@@ -15,12 +15,12 @@ const PokeList = () => {
     setRandomPoke,
     pokeData,
   } = usePokeContext();
-  console.log("pokeList - randomPoke", randomPoke);
-  console.log("pokeList - pokeData", pokeData);
+  // console.log("pokeList - randomPoke", randomPoke);
+  // console.log("pokeList - pokeData", pokeData);
   const handleRandomPokemon = () => {
     if (pokeList.length) {
       const randIdx = Math.floor(Math.random() * pokeList.length);
-      console.log("pokeList", pokeList[randIdx]);
+      // console.log("pokeList", pokeList[randIdx]);
       setRandomPoke([pokeList[randIdx]]);
     }
   };

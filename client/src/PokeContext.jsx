@@ -45,13 +45,13 @@ const Provider = ({ children }) => {
   }, [getPokeData, randomPoke]);
 
   // this was just to make sure context state was in sync with click handler
-  React.useEffect(() => {
-    console.log("pokeData", pokeData);
-  }, [pokeData]);
+  // React.useEffect(() => {
+  //   console.log("pokeData", pokeData);
+  // }, [pokeData]);
   // this was just to make sure context state was in sync with click handler
-  React.useEffect(() => {
-    console.log("context", randomPoke);
-  }, [randomPoke]);
+  // React.useEffect(() => {
+  //   console.log("context", randomPoke);
+  // }, [randomPoke]);
 
   React.useEffect(() => {
     getPokeList();
