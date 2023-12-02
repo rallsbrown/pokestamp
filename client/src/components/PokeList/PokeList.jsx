@@ -40,7 +40,7 @@ const PokeList = () => {
         </div>
         <div className='PokeCards'>
           {!!pokeList.length &&
-            randomPoke.map((poke, i) => {
+            pokeData.map((poke, i) => {
               return <PokeCard key={i} {...poke} />;
             })}
         </div>
