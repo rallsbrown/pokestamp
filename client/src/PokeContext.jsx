@@ -14,11 +14,11 @@ const Provider = (props) => {
     setLoading(true);
     try {
       const { data } = await axios.get("http://localhost:8000/pokemon");
-      const pokeUrls = data.map((poke) => poke.url);
-      const pokeNames = data.map((poke) => poke.name);
-      console.log("poke urls", pokeUrls);
-      console.log("poke names", pokeNames);
-      setPokeList(pokeNames);
+      // const pokeUrls = data.map((poke) => poke.url);
+      // const pokeNames = data.map((poke) => poke.name);
+      // console.log("poke urls", pokeUrls);
+      // console.log("poke names", pokeNames);
+      setPokeList(data);
       console.log("fetched data", data);
       setLoading(false);
     } catch (e) {
