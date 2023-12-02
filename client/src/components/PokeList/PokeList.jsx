@@ -4,7 +4,7 @@ const PokeList = () => {
   return (
     <>
       <PokeCard />
-      <div>p o k e l i s t</div>
+      <div className='PokeList'>p o k e l i s t</div>
     </>
   );
 };

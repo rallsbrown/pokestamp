@@ -1,7 +1,8 @@
 import "./App.css";
 import Provider from "./PokeContext";
+import PokeStamp from "./components/PokeStamp/PokeStamp";
 import TestList from "./components/TestList/TestList";
-import PokeList from "./components/TestList/PokeList/PokeList";
+import PokeList from "./components/PokeList/PokeList";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <div>
         <Provider>
           <PokeList />
+          <PokeStamp />
           <TestList />
         </Provider>
       </div>
