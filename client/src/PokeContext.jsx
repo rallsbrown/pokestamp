@@ -3,6 +3,7 @@ import axios from "axios";
 
 export const PokeContext = React.createContext(null);
 
+// eslint-disable-next-line react/prop-types
 const Provider = ({ children }) => {
   const [pokeList, setPokeList] = useState([]);
   const [loading, setLoading] = useState(false);

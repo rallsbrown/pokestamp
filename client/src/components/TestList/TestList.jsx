@@ -1,7 +1,7 @@
-import React from "react";
 import { usePokeContext } from "../../usePokeContext";
 
 const TestList = () => {
+  // eslint-disable-next-line no-unused-vars
   const { pokeList, setPokeList, loading } = usePokeContext();
   if (loading) {
     return <div>loading</div>;
