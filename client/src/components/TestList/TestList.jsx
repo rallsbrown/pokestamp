@@ -16,7 +16,7 @@ const TestList = () => {
       {pokeList.map((poke, i) => {
         return (
           <div key={i}>
-            name: {poke.name}, url: {poke.url}
+            {i + 1}:: name: {poke.name}, url: {poke.url}
           </div>
         );
       })}
