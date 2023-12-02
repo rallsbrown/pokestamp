@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import "./PokeList.css";
 import { usePokeContext } from "../../usePokeContext";
@@ -13,7 +14,7 @@ const PokeList = () => {
     if (pokeList.length) {
       const randIdx = Math.floor(Math.random() * pokeList.length);
       console.log("pokeList", pokeList[randIdx]);
-      setRandomPoke(pokeList[randIdx]);
+      setRandomPoke([pokeList[randIdx]]);
     }
   };
 
@@ -31,7 +32,10 @@ const PokeList = () => {
           <button className='ListButton'>clear pokemon</button>
         </div>
         <div className='PokeCards'>
-          <PokeCard />
+          {!!pokeList.length &&
+            randomPoke.map((poke, i) => {
+              return <PokeCard key={i} {...poke} />;
+            })}
         </div>
       </div>
     </>

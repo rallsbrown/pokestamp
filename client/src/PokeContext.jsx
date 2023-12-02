@@ -25,6 +25,7 @@ const Provider = ({ children }) => {
     }
   };
 
+  // this was just to make sure context state was in sync with click handler
   React.useEffect(() => {
     console.log("context", randomPoke);
   }, [randomPoke]);
