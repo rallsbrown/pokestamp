@@ -1,0 +1,26 @@
+.PokeList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightcyan;
+  height: 300px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.ListButtons {
+  background-color: deeppink;
+}
+
+.ListButton {
+  background-color: honeydew;
+  color: blueviolet;
+}
+
+.PokeCards {
+  display: flex;
+  flex-direction: rox;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: sandybrown;
+}
