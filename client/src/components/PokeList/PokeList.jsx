@@ -31,7 +31,6 @@ const PokeList = () => {
   return (
     <>
       <div className='PokeList'>
-        <h2> p o k e l i s t </h2>
         <div className='ListButtons'>
           <button onClick={() => handleRandomPokemon()} className='ListButton'>
             get random pokemon

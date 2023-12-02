@@ -1,0 +1,23 @@
+.PokeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: yellowgreen;
+  height: 100%;
+  width: 250px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.types {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+}
+
+.foo {
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 0;
+}
