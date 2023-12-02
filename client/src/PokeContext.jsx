@@ -7,6 +7,7 @@ export const PokeContext = React.createContext(null);
 const Provider = ({ children }) => {
   const [pokeList, setPokeList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [randomPoke, setRandomPoke] = useState([]);
 
   //got stuck on this
   //Uncaught Error: Objects are not valid as a React child (found: object with keys {name, url})
@@ -25,6 +26,10 @@ const Provider = ({ children }) => {
   };
 
   React.useEffect(() => {
+    console.log("context", randomPoke);
+  }, [randomPoke]);
+
+  React.useEffect(() => {
     getPoke();
   }, []);
 
@@ -32,6 +37,8 @@ const Provider = ({ children }) => {
     pokeList,
     setPokeList,
     loading,
+    randomPoke,
+    setRandomPoke,
   };
 
   return (
