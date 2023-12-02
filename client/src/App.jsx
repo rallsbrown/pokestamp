@@ -11,8 +11,8 @@ function App() {
       <div>
         <Provider>
           <PokeList />
-          <PokeStamp />
           <TestList />
+          <PokeStamp />
         </Provider>
       </div>
     </>
