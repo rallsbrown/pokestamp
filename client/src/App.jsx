@@ -7,8 +7,8 @@ import PokeList from "./components/PokeList/PokeList";
 function App() {
   return (
     <>
-      <h1>p o k e s t a m p</h1>
-      <div>
+      <div className='App'>
+        <h1>p o k e s t a m p</h1>
         <Provider>
           <PokeList />
           <TestList />
