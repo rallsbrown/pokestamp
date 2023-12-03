@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <div className='App'>
-        <h1>p o k e s t a m p</h1>
+        {/* <h1>p o k e s t a m p</h1> */}
         <Provider>
           <PokeList />
           {/* <TestList /> */}

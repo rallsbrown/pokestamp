@@ -1,0 +1,23 @@
+.PokeStamp {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  background-color: lightsalmon;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.PokeClickBox {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.StampButton {
+  border: 1px solid transparent;
+  background-color: honeydew;
+  color: blueviolet;
+  height: 25px;
+}
