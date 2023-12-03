@@ -15,7 +15,12 @@
   z-index: 2;
 }
 
+.StampButtons {
+  display: flex;
+  width: 600px;
+}
 .StampButton {
+  flex: auto;
   border: 1px solid transparent;
   background-color: honeydew;
   color: blueviolet;
