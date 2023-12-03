@@ -25,9 +25,11 @@ const PokeList = () => {
     }
   };
 
-  if (loading) {
-    return <h1>loading...</h1>;
-  }
+  //commented this out as the fast loading and flashing was distracting
+  // if (loading) {
+  //   return <h1>loading...</h1>;
+  // }
+
   return (
     <>
       <div className='PokeList'>
