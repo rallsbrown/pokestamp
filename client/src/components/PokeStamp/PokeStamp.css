@@ -1,4 +1,4 @@
-.PokeStamp {
+.PokeStampCanvas {
   position: relative;
   width: 600px;
   height: 600px;
@@ -15,9 +15,17 @@
   z-index: 2;
 }
 
+.Poke {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  z-index: 1;
+}
+
 .StampButtons {
   display: flex;
   width: 600px;
+  z-index: 3;
 }
 .StampButton {
   flex: auto;
