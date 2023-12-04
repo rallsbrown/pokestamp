@@ -31,10 +31,24 @@ const PokeStamp = () => {
     }
   };
 
+  const handleUndo = () => {
+    if (stamps.length) {
+      const newStamps = stamps;
+      newStamps.pop();
+      setStamps([...newStamps]);
+    }
+  };
+
   return (
     <>
       <div className='StampButtons'>
-        <button className='StampButton'>undo</button>
+        <button
+          disabled={stamps.length === 0}
+          className='StampButton'
+          onClick={handleUndo}
+        >
+          undo
+        </button>
         <button className='StampButton'>redo</button>
         <button className='StampButton'>clear</button>
         <button className='StampButton'>download</button>
