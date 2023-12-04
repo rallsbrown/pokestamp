@@ -51,6 +51,11 @@ const PokeStamp = () => {
       setDeleted([...deletedStamps]);
     }
   };
+  const handleClearStamps = () => {
+    if (stamps.length) {
+      setStamps([]), setDeleted([]);
+    }
+  };
 
   return (
     <>
@@ -69,7 +74,13 @@ const PokeStamp = () => {
         >
           redo
         </button>
-        <button className='StampButton'>clear</button>
+        <button
+          disabled={stamps.length === 0 && deleted.length === 0}
+          className='StampButton'
+          onClick={handleClearStamps}
+        >
+          clear
+        </button>
         <button className='StampButton'>download</button>
         <button className='StampButton'>add to gallery</button>
         <button className='StampButton'>random bg color</button>
