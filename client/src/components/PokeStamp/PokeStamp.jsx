@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./PokeStamp.css";
 import { usePokeContext } from "../../usePokeContext";
+import html2Canvas from "html2canvas";
 
 const PokeStamp = () => {
   const {
