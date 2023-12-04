@@ -12,6 +12,11 @@ const PokeStamp = () => {
     pokeData,
   } = usePokeContext();
   const [stamps, setStamps] = useState([]);
+  const [deleted, setDeleted] = useState([]);
+
+  useEffect(() => {
+    console.log(deleted);
+  }, [deleted]);
 
   const handlePlacePokeStamp = ({ nativeEvent }) => {
     if (pokeData.length) {
@@ -33,9 +38,17 @@ const PokeStamp = () => {
 
   const handleUndo = () => {
     if (stamps.length) {
-      const newStamps = stamps;
-      newStamps.pop();
+      const newStamps = [...stamps];
+      const removed = newStamps.pop();
       setStamps([...newStamps]);
+      setDeleted([...deleted, removed]);
+    }
+  };
+  const handleRedo = () => {
+    if (deleted.length) {
+      const deletedStamps = [...deleted];
+      setStamps([...stamps, deletedStamps.pop()]);
+      setDeleted([...deletedStamps]);
     }
   };
 
@@ -49,7 +62,13 @@ const PokeStamp = () => {
         >
           undo
         </button>
-        <button className='StampButton'>redo</button>
+        <button
+          disabled={deleted.length === 0}
+          className='StampButton'
+          onClick={handleRedo}
+        >
+          redo
+        </button>
         <button className='StampButton'>clear</button>
         <button className='StampButton'>download</button>
         <button className='StampButton'>add to gallery</button>
