@@ -56,6 +56,11 @@ const PokeStamp = () => {
       setStamps([]), setDeleted([]);
     }
   };
+  const handleDownload = () => {};
+  const handleAddToGallery = () => {};
+  const handleRandomBgColor = () => {};
+  const handleSave = () => {};
+  const handleLoad = () => {};
 
   return (
     <>
