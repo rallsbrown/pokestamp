@@ -13,10 +13,20 @@ const PokeStamp = () => {
   } = usePokeContext();
   const [stamps, setStamps] = useState([]);
   const [deleted, setDeleted] = useState([]);
+  const [canvasBackGroundColor, setcanvasBackGroundColor] = useState(
+    randomColor()
+  );
 
   useEffect(() => {
     console.log(deleted);
   }, [deleted]);
+
+  function randomColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r},${g},${b})`;
+  }
 
   const handlePlacePokeStamp = ({ nativeEvent }) => {
     if (pokeData.length) {
@@ -58,7 +68,9 @@ const PokeStamp = () => {
   };
   const handleDownload = () => {};
   const handleAddToGallery = () => {};
-  const handleRandomBgColor = () => {};
+  const handleRandomBgColor = () => {
+    setcanvasBackGroundColor(randomColor());
+  };
   const handleSave = () => {};
   const handleLoad = () => {};
 
@@ -88,7 +100,9 @@ const PokeStamp = () => {
         </button>
         <button className='StampButton'>download</button>
         <button className='StampButton'>add to gallery</button>
-        <button className='StampButton'>random bg color</button>
+        <button className='StampButton' onClick={handleRandomBgColor}>
+          random bg color
+        </button>
         <button className='StampButton'>save</button>
         <button className='StampButton'>load</button>
       </div>
@@ -99,8 +113,9 @@ const PokeStamp = () => {
           pokeData.length
             ? {
                 cursor: `url(${pokeData[0].sprites.front_default}) 48 48, auto`,
+                backgroundColor: canvasBackGroundColor,
               }
-            : { cursor: "auto" }
+            : { cursor: "auto", backgroundColor: canvasBackGroundColor }
         }
       >
         {stamps.map((point, idx) => (
