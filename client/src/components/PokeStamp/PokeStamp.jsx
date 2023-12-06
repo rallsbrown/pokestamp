@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./PokeStamp.css";
 import { usePokeContext } from "../../usePokeContext";
 import html2Canvas from "html2canvas";
+import { faker } from "@faker-js/faker";
 
 const PokeStamp = () => {
   const {
@@ -68,10 +69,6 @@ const PokeStamp = () => {
     }
   };
   const handleDownload = () => {
-    //maybe try using HTMLCanvasElement: toDataURL() method?
-    //would still need html2canvas...
-
-    //change PokeStampCanvas to PokeStampArea for clarity
     console.log("hadleDownLoad");
 
     const elementToCapture = document.querySelector(".PokeStampCanvas");
@@ -88,7 +85,8 @@ const PokeStamp = () => {
         const imgData = canvas.toDataURL("image/jpeg");
         const downloadLink = document.createElement("a");
         downloadLink.href = imgData;
-        downloadLink.download = "pokecollage.jpeg";
+        //use fakerjs to generate random names later.
+        downloadLink.download = `${faker.color.human()}_${faker.animal.type()}.jpeg`;
         downloadLink.click();
       })
       .catch((e) => {
