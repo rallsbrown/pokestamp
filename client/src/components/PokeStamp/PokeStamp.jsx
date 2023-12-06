@@ -67,7 +67,35 @@ const PokeStamp = () => {
       setStamps([]), setDeleted([]);
     }
   };
-  const handleDownload = () => {};
+  const handleDownload = () => {
+    //maybe try using HTMLCanvasElement: toDataURL() method?
+    //would still need html2canvas...
+
+    //change PokeStampCanvas to PokeStampArea for clarity
+    console.log("hadleDownLoad");
+
+    const elementToCapture = document.querySelector(".PokeStampCanvas");
+    if (!elementToCapture) {
+      console.error("element not found");
+      return;
+    }
+
+    html2Canvas(elementToCapture, {
+      allowTaint: true,
+      useCORS: true,
+    })
+      .then((canvas) => {
+        const imgData = canvas.toDataURL("image/jpeg");
+        const downloadLink = document.createElement("a");
+        downloadLink.href = imgData;
+        downloadLink.download = "pokecollage.jpeg";
+        downloadLink.click();
+      })
+      .catch((e) => {
+        console.error("capture and download failed", e);
+      });
+  };
+
   const handleAddToGallery = () => {};
   const handleRandomBgColor = () => {
     setcanvasBackGroundColor(randomColor());
@@ -99,7 +127,9 @@ const PokeStamp = () => {
         >
           clear
         </button>
-        <button className='StampButton'>download</button>
+        <button className='StampButton' onClick={handleDownload}>
+          download
+        </button>
         <button className='StampButton'>add to gallery</button>
         <button className='StampButton' onClick={handleRandomBgColor}>
           random bg color
