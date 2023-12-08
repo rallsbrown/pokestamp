@@ -5,7 +5,7 @@ const axios = require("axios");
 require("dotenv").config();
 
 const app = express();
-const fs = require("fs");
+const fs = require("fs").promise;
 const path = require("path");
 const exp = require("constants");
 
@@ -14,6 +14,17 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Content-Type",
   optionsSuccessStatus: 200,
+};
+
+const fetchImages = async () => {
+  const uploadDir = "./upload";
+
+  try {
+    const files = await fs.readdir(uploadDir);
+    return files;
+  } catch (err) {
+    throw err;
+  }
 };
 
 app
@@ -38,6 +49,16 @@ app
       .catch((error) => {
         console.log(error);
       });
+  })
+  .get("/getImages", (req, res) => {
+    const uploadDir = "./upload";
+
+    if (!fs.existsSync(uploadDir)) {
+      return res.status(404).send("No files uploaded yet.");
+    }
+    const imageFileNames = fetchImages();
+    const imgUrls = imageFileNames.map((filename) => `/images/${filename}`);
+    res.json({ imgUrls });
   })
   .post("/upload", (req, res) => {
     if (!req.body) {
