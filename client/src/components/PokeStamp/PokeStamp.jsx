@@ -3,6 +3,7 @@ import "./PokeStamp.css";
 import { usePokeContext } from "../../usePokeContext";
 import html2Canvas from "html2canvas";
 import { faker } from "@faker-js/faker";
+import axios from "axios";
 
 const PokeStamp = () => {
   const captureRef = useRef(null);
@@ -20,9 +21,9 @@ const PokeStamp = () => {
     randomColor()
   );
 
-  useEffect(() => {
-    console.log(deleted);
-  }, [deleted]);
+  // useEffect(() => {
+  //   console.log(deleted);
+  // }, [deleted]);
 
   function randomColor() {
     const r = Math.floor(Math.random() * 256);
@@ -72,7 +73,6 @@ const PokeStamp = () => {
   };
 
   const handleDownload = () => {
-    // const elementToCapture = document.querySelector(".PokeStampCanvas");
     if (!captureRef.current) {
       console.error("element not found");
       return;
@@ -95,7 +95,25 @@ const PokeStamp = () => {
       });
   };
 
-  const handleAddToGallery = () => {};
+  const handleAddToGallery = async () => {
+    if (captureRef.current) {
+      const imgCap = captureRef.current;
+      const canvas = html2Canvas(imgCap, {
+        allowTaint: true,
+        useCORS: true,
+      });
+      const dataURL = (await canvas).toDataURL("image/jpeg");
+
+      try {
+        await axios.post("http://localhost:8000/upload", { dataURL });
+        console.log("Upload successful");
+        //add fetching state and toggle for useEffect hook to poll for images everytime one is uploaded?
+      } catch (e) {
+        console.error("error uploading image", e);
+      }
+    }
+  };
+
   const handleRandomBgColor = () => {
     setcanvasBackGroundColor(randomColor());
   };
@@ -129,7 +147,9 @@ const PokeStamp = () => {
         <button className='StampButton' onClick={handleDownload}>
           download
         </button>
-        <button className='StampButton'>add to gallery</button>
+        <button className='StampButton' onClick={handleAddToGallery}>
+          add to gallery
+        </button>
         <button className='StampButton' onClick={handleRandomBgColor}>
           random bg color
         </button>
