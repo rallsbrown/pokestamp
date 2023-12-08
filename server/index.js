@@ -45,11 +45,31 @@ app
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir);
     }
-    const fileName = `${uploadDir}/pokestamp${Date.now()}.jpg`;
+    const files = fs.readdirSync(uploadDir);
+
+    console.log(files);
+
+    const fileNumbers = files.map((fileName) => {
+      return parseInt(fileName.split("_")[1].split(".")[0]);
+    });
+
+    const latestFileNum = Math.max(...fileNumbers);
+
+    const nextFileName = `${uploadDir}/pokestamp_${latestFileNum + 1}.jpg`;
+
+    const fileName = `${uploadDir}/pokestamp_0.jpg`;
+
+    const file = () => {
+      if (files.length) {
+        return nextFileName;
+      } else {
+        return fileName;
+      }
+    };
 
     const base64Data = dataURL.replace(/^data:image\/jpeg;base64,/, "");
 
-    fs.writeFile(fileName, base64Data, "base64", (e) => {
+    fs.writeFile(file(), base64Data, "base64", (e) => {
       if (e) {
         console.error("Error saving file:", e);
         return res.status(500).send("Error saving file.");
