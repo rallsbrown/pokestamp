@@ -7,6 +7,7 @@ require("dotenv").config();
 const app = express();
 const fs = require("fs");
 const path = require("path");
+const exp = require("constants");
 
 const corsOptions = {
   origin: "http://localhost:5175",
@@ -15,8 +16,10 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-app.use(express.json({ limit: "10mb" }));
-app.use(cors(corsOptions));
+app
+  .use(express.json({ limit: "10mb" }))
+  .use(cors(corsOptions))
+  .use("/images", express.static(path.join(__dirname, "upload")));
 
 app
   .get("/", (req, res) => {
