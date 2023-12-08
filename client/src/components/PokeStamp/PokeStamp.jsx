@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./PokeStamp.css";
 import { usePokeContext } from "../../usePokeContext";
 import html2Canvas from "html2canvas";
 import { faker } from "@faker-js/faker";
 
 const PokeStamp = () => {
+  const captureRef = useRef(null);
   const {
     pokeList,
     setPokeList,
@@ -35,7 +36,6 @@ const PokeStamp = () => {
       const { layerX, layerY } = nativeEvent;
       setStamps((prevStamps) => [
         ...prevStamps,
-
         {
           x: layerX,
           y: layerY,
@@ -56,6 +56,7 @@ const PokeStamp = () => {
       setDeleted([...deleted, removed]);
     }
   };
+
   const handleRedo = () => {
     if (deleted.length) {
       const deletedStamps = [...deleted];
@@ -63,21 +64,21 @@ const PokeStamp = () => {
       setDeleted([...deletedStamps]);
     }
   };
+
   const handleClearStamps = () => {
     if (stamps.length) {
       setStamps([]), setDeleted([]);
     }
   };
-  const handleDownload = () => {
-    console.log("hadleDownLoad");
 
-    const elementToCapture = document.querySelector(".PokeStampCanvas");
-    if (!elementToCapture) {
+  const handleDownload = () => {
+    // const elementToCapture = document.querySelector(".PokeStampCanvas");
+    if (!captureRef.current) {
       console.error("element not found");
       return;
     }
 
-    html2Canvas(elementToCapture, {
+    html2Canvas(captureRef.current, {
       allowTaint: true,
       useCORS: true,
     })
@@ -137,6 +138,7 @@ const PokeStamp = () => {
       </div>
       <div
         className='PokeStampCanvas'
+        ref={captureRef}
         onClick={handlePlacePokeStamp}
         style={
           pokeData.length
