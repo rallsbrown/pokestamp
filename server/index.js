@@ -17,7 +17,6 @@ const corsOptions = {
 
 app.use(express.json({ limit: "10mb" }));
 app.use(cors(corsOptions));
-// app.options("/upload", cors(corsOptions));
 
 app
   .get("/", (req, res) => {
@@ -37,7 +36,6 @@ app
         console.log(error);
       });
   })
-  //cors(coprsOptions) doens't seems to be working so enabled in globally for now.
   .post("/upload", (req, res) => {
     if (!req.body) {
       return res.status(400).send("No file uploaded.");
