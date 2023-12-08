@@ -10,17 +10,20 @@ const path = require("path");
 
 const corsOptions = {
   origin: "http://localhost:5175",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: "Content-Type",
+  optionsSuccessStatus: 200,
 };
 
-app.use(express.json());
-app.use(cors());
+app.use(express.json({ limit: "10mb" }));
+app.use(cors(corsOptions));
+// app.options("/upload", cors(corsOptions));
 
 app
   .get("/", (req, res) => {
     res.json("hi");
   })
-  .get("/pokemon", cors(corsOptions), (req, res) => {
+  .get("/pokemon", (req, res) => {
     const options = {
       method: "GET",
       url: `${process.env.POKEAPI_KEY}pokemon?limit=151`,
@@ -35,7 +38,7 @@ app
       });
   })
   //cors(coprsOptions) doens't seems to be working so enabled in globally for now.
-  .post("/upload", cors(corsOptions), (req, res) => {
+  .post("/upload", (req, res) => {
     if (!req.body) {
       return res.status(400).send("No file uploaded.");
     }
