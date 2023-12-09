@@ -21,6 +21,24 @@ const PokeStamp = () => {
   const [canvasBackGroundColor, setcanvasBackGroundColor] = useState(
     randomColor()
   );
+  const [imgUrls, setImgUrls] = useState([]);
+  const [fetching, setfetching] = useState(false);
+
+  const fetchImages = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/getImages");
+      const data = await response.json();
+      setImgUrls(data.imgUrls);
+    } catch (err) {
+      console.log("error fetching images", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchImages();
+    console.log(imgUrls);
+    setfetching(false);
+  }, [fetching]);
 
   // useEffect(() => {
   //   console.log(deleted);
@@ -120,6 +138,9 @@ const PokeStamp = () => {
   };
   const handleSave = () => {};
   const handleLoad = () => {};
+  const handleFetchImages = () => {
+    setfetching(true);
+  };
 
   return (
     <>
@@ -156,6 +177,9 @@ const PokeStamp = () => {
         </button>
         <button className='StampButton'>save</button>
         <button className='StampButton'>load</button>
+        <button className='StampButton' onClick={handleFetchImages}>
+          fetch
+        </button>
       </div>
       <div
         className='PokeStampCanvas'

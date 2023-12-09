@@ -11,7 +11,7 @@ const path = require("path");
 
 const corsOptions = {
   origin: "http://localhost:7000",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  methods: "GET,FETCH, HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Content-Type",
   optionsSuccessStatus: 200,
 };
@@ -50,13 +50,14 @@ app
         console.log(error);
       });
   })
-  .get("/getImages", (req, res) => {
+  .get("/getImages", async (req, res) => {
     const uploadDir = "./upload";
 
     if (!fs.existsSync(uploadDir)) {
       return res.status(404).send("No files uploaded yet.");
     }
-    const imageFileNames = fetchImages();
+    const imageFileNames = await fetchImages();
+    console.log("image names", imageFileNames);
     const imgUrls = imageFileNames.map((filename) => `/images/${filename}`);
     res.json({ imgUrls });
   })
