@@ -82,9 +82,20 @@ app
 
     const latestFileNum = Math.max(...fileNumbers);
 
-    const nextFileName = `${uploadDir}/pokestamp_${latestFileNum + 1}.jpg`;
+    function pad(num, size) {
+      num = num.toString();
+      while (num.length < size) num = "0" + num;
+      return num;
+    }
 
-    const fileName = `${uploadDir}/pokestamp_0.jpg`;
+    const nextFileName = `${uploadDir}/pokestamp_${pad(
+      latestFileNum + 1,
+      2
+    )}.jpg`;
+
+    console.log("netxFileName", nextFileName);
+
+    const fileName = `${uploadDir}/pokestamp_01.jpg`;
 
     const file = () => {
       if (files.length) {
