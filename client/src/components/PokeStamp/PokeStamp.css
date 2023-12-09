@@ -41,3 +41,15 @@
   color: rgb(231, 214, 247);
   height: 25px;
 }
+.Gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: 600px;
+  height: 600px;
+}
+.LoadedImgs {
+  width: 150px;
+  height: 150px;
+}

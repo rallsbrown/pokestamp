@@ -22,7 +22,7 @@ const PokeStamp = () => {
     randomColor()
   );
   const [imgUrls, setImgUrls] = useState([]);
-  const [fetching, setfetching] = useState(false);
+  const [fetching, setFetching] = useState(false);
 
   const fetchImages = async () => {
     try {
@@ -36,8 +36,7 @@ const PokeStamp = () => {
 
   useEffect(() => {
     fetchImages();
-    console.log(imgUrls);
-    setfetching(false);
+    setFetching(false);
   }, [fetching]);
 
   // useEffect(() => {
@@ -126,6 +125,7 @@ const PokeStamp = () => {
       try {
         await axios.post("http://localhost:8000/upload", { dataURL });
         console.log("Upload successful");
+        setFetching(true);
         //add fetching state and toggle for useEffect hook to poll for images everytime one is uploaded?
       } catch (e) {
         console.error("error uploading image", e);
@@ -139,7 +139,7 @@ const PokeStamp = () => {
   const handleSave = () => {};
   const handleLoad = () => {};
   const handleFetchImages = () => {
-    setfetching(true);
+    setFetching(true);
   };
 
   return (
@@ -207,6 +207,16 @@ const PokeStamp = () => {
           </div>
         ))}
         <div className='PokeClickBox'></div>
+      </div>
+      <div className='Gallery'>
+        {imgUrls.map((imgUrl, idx) => (
+          <img
+            className='LoadedImgs'
+            key={idx}
+            src={`http://localhost:8000${imgUrl}`}
+            alt={`collage ${idx}`}
+          />
+        ))}
       </div>
     </>
   );
