@@ -5,12 +5,12 @@ const axios = require("axios");
 require("dotenv").config();
 
 const app = express();
-const fs = require("fs").promise;
+const fs = require("fs");
+const fsp = fs.promises;
 const path = require("path");
-const exp = require("constants");
 
 const corsOptions = {
-  origin: "http://localhost:5175",
+  origin: "http://localhost:7000",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   allowedHeaders: "Content-Type",
   optionsSuccessStatus: 200,
@@ -20,7 +20,7 @@ const fetchImages = async () => {
   const uploadDir = "./upload";
 
   try {
-    const files = await fs.readdir(uploadDir);
+    const files = await fsp.readdir(uploadDir);
     return files;
   } catch (err) {
     throw err;
@@ -67,6 +67,7 @@ app
     const { dataURL } = req.body;
 
     const uploadDir = "./upload";
+    console.log("ugh", uploadDir);
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir);
     }
