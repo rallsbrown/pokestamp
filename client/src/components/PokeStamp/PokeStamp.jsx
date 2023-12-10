@@ -21,9 +21,11 @@ const PokeStamp = () => {
   const [canvasBackGroundColor, setcanvasBackGroundColor] = useState(
     randomColor()
   );
+  //this could go into gallery component?
   const [imgUrls, setImgUrls] = useState([]);
+  //this could go into gallery component?
   const [fetching, setFetching] = useState(false);
-
+  //this could go into gallery component?
   const fetchImages = async () => {
     try {
       const response = await fetch("http://localhost:8000/getImages");
@@ -33,16 +35,12 @@ const PokeStamp = () => {
       console.log("error fetching images", err);
     }
   };
-
+  //this could go into gallery component?
   useEffect(() => {
     fetchImages();
     setFetching(false);
     console.log(imgUrls);
   }, [fetching]);
-
-  // useEffect(() => {
-  //   console.log(deleted);
-  // }, [deleted]);
 
   function randomColor() {
     const r = Math.floor(Math.random() * 256);
@@ -113,7 +111,7 @@ const PokeStamp = () => {
         console.error("capture and download failed", e);
       });
   };
-
+  //this uploads images that will be pulled into gallery component, but still needs to live here?
   const handleAddToGallery = async () => {
     if (captureRef.current) {
       const imgCap = captureRef.current;
@@ -127,8 +125,6 @@ const PokeStamp = () => {
         await axios.post("http://localhost:8000/upload", { dataURL });
         console.log("Upload successful");
         setFetching(true);
-
-        //add fetching state and toggle for useEffect hook to poll for images everytime one is uploaded?
       } catch (e) {
         console.error("error uploading image", e);
       }
@@ -140,6 +136,9 @@ const PokeStamp = () => {
   };
   const handleSave = () => {};
   const handleLoad = () => {};
+  //this may not stay, was just to help troubleshoot, but could be useful to keep?
+  //if kept, might be best to move to gallery component if they are siblings.
+  //if gallery is child of stamp then could be passed down as prop?
   const handleFetchImages = () => {
     setFetching(true);
   };
@@ -210,6 +209,7 @@ const PokeStamp = () => {
         ))}
         <div className='PokeClickBox'></div>
       </div>
+      {/* this would all be moved to the gallery and maybe look into using a library? */}
       <div className='Gallery'>
         {imgUrls.map((imgUrl, idx) => (
           <div key={idx + 1} className='GaleryCell'>
