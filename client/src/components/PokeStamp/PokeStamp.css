@@ -71,12 +71,21 @@
 .ImageLabel {
   color: bisque;
   margin: 0px;
+  opacity: 5%;
+  font-size: 150px;
   position: absolute;
   text-align: center;
   z-index: 3;
 }
+.ImageLabel:hover {
+  z-index: 0;
+}
+
 .LoadedImgs {
   position: absolute;
   width: inherit;
   height: inherit;
+}
+.LoadedImgs:hover {
+  z-index: 4;
 }
