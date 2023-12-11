@@ -9,6 +9,7 @@ const Provider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [randomPoke, setRandomPoke] = useState([]);
   const [pokeData, setPokeData] = useState([]);
+  const [fetching, setFetching] = useState(false);
 
   //got stuck on this
   //Uncaught Error: Objects are not valid as a React child (found: object with keys {name, url})
@@ -64,6 +65,8 @@ const Provider = ({ children }) => {
     randomPoke,
     setRandomPoke,
     pokeData,
+    fetching,
+    setFetching,
   };
 
   return (
