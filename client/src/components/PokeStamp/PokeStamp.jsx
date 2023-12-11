@@ -15,6 +15,8 @@ const PokeStamp = () => {
     randomPoke,
     setRandomPoke,
     pokeData,
+    fetching,
+    setFetching,
   } = usePokeContext();
   const [stamps, setStamps] = useState([]);
   const [deleted, setDeleted] = useState([]);
@@ -24,7 +26,8 @@ const PokeStamp = () => {
   //this could go into gallery component?
   const [imgUrls, setImgUrls] = useState([]);
   //this could go into gallery component?
-  const [fetching, setFetching] = useState(false);
+  //maybe this should go into context?
+  // const [fetching, setFetching] = useState(false);
   //this could go into gallery component?
   const fetchImages = async () => {
     try {

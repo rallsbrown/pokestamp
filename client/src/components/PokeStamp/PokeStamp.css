@@ -41,6 +41,7 @@
   color: rgb(231, 214, 247);
   height: 25px;
 }
+/* gallery stuff to add to PokeGallery. */
 .Gallery {
   display: flex;
   flex-direction: row;
