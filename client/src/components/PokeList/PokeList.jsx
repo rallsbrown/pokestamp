@@ -15,6 +15,7 @@ const PokeList = () => {
     setRandomPoke,
     pokeData,
   } = usePokeContext();
+  const [isLoaded, setIsLoaded] = useState(false);
   // console.log("pokeList - randomPoke", randomPoke);
   // console.log("pokeList - pokeData", pokeData);
   const handleRandomPokemon = () => {
