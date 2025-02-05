@@ -32,6 +32,11 @@ const PokeList = () => {
     }
   }, [pokeList]);
 
+  useEffect(() => {
+    handleRandomPokemon();
+    console.log("loaded");
+  }, [isLoaded]);
+
   //commented this out as the fast loading and flashing was distracting
   // if (loading) {
   //   return <h1>loading...</h1>;
