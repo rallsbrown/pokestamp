@@ -158,8 +158,12 @@ const PokeStamp = () => {
         <button className='StampButton' onClick={handleRandomBgColor}>
           random bg color
         </button>
-        <button className='StampButton'>save</button>
-        <button className='StampButton'>load</button>
+        <button className='StampButton' disabled={true}>
+          save
+        </button>
+        <button className='StampButton' disabled={true}>
+          load
+        </button>
         <button className='StampButton' onClick={handleFetchImages}>
           fetch
         </button>
