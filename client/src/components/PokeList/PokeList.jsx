@@ -49,7 +49,9 @@ const PokeList = () => {
           <button onClick={() => handleRandomPokemon()} className='ListButton'>
             get random pokemon
           </button>
-          <button className='ListButton'>clear pokemon</button>
+          <button className='ListButton' disabled={true}>
+            clear pokemon
+          </button>
         </div>
         <div className='PokeCards'>
           {!!pokeList.length &&

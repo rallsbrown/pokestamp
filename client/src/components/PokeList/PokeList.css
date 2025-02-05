@@ -20,6 +20,13 @@
   height: 25px;
 }
 
+.ListButton:disabled {
+  background-color: gray;
+  color: lightblue;
+  height: 25px;
+  cursor: default;
+}
+
 .PokeCards {
   display: flex;
   flex-direction: rox;
