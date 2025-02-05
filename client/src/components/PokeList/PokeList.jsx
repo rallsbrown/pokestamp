@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./PokeList.css";
 import { usePokeContext } from "../../usePokeContext";
 import PokeCard from "../PokeCard/PokeCard";
@@ -25,6 +25,12 @@ const PokeList = () => {
       setRandomPoke([pokeList[randIdx]]);
     }
   };
+
+  useEffect(() => {
+    if (pokeList.length) {
+      setIsLoaded(true);
+    }
+  }, [pokeList]);
 
   //commented this out as the fast loading and flashing was distracting
   // if (loading) {
