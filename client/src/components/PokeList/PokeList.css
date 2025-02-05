@@ -21,8 +21,10 @@
 }
 
 .ListButton:disabled {
-  background-color: gray;
-  color: lightblue;
+  flex: auto;
+  border: 1px solid transparent;
+  background-color: rgba(188, 188, 188, 0.929);
+  color: rgb(231, 214, 247);
   height: 25px;
   cursor: default;
 }
