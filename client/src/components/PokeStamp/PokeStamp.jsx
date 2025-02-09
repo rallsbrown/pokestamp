@@ -23,6 +23,7 @@ const PokeStamp = () => {
   const [canvasBackGroundColor, setcanvasBackGroundColor] = useState(
     randomColor()
   );
+  const [isHovered, setIsHovered] = useState(false);
 
   function randomColor() {
     const r = Math.floor(Math.random() * 256);
@@ -175,10 +176,9 @@ const PokeStamp = () => {
         style={
           pokeData.length
             ? {
-                cursor: `url(${pokeData[0].sprites.front_default}) 48 48, auto`,
                 backgroundColor: canvasBackGroundColor,
               }
-            : { cursor: "auto", backgroundColor: canvasBackGroundColor }
+            : { backgroundColor: canvasBackGroundColor }
         }
       >
         {stamps.map((point, idx) => (
@@ -193,7 +193,18 @@ const PokeStamp = () => {
             <img alt={point.name} src={point.sprite} />
           </div>
         ))}
-        <div className='PokeClickBox'></div>
+        <div
+          className='PokeClickBox'
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          style={
+            pokeData.length && isHovered
+              ? {
+                  cursor: `url(${pokeData[0].sprites.front_default}) 48 48, auto`,
+                }
+              : { cursor: "auto" }
+          }
+        ></div>
       </div>
     </>
   );
