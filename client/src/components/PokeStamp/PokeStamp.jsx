@@ -190,7 +190,7 @@ const PokeStamp = () => {
               top: point.y - 48 + "px",
             }}
           >
-            <img alt={point.name} src={point.sprite} />
+            <img className='PokeImage' alt={point.name} src={point.sprite} />
           </div>
         ))}
         <div
