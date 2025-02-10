@@ -9,6 +9,10 @@
   padding: 0px;
 }
 
+.PokeCardImage {
+  image-rendering: pixelated;
+}
+
 .types {
   display: flex;
   flex-direction: row;
